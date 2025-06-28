@@ -8,12 +8,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
-</head>
+    </head>
 <body>
 
     <div class="container">
         <header>
             <h1>The Magic Storyteller ✨</h1>
+            
+            <nav id="nav-menu">
+                <div id="logged-out-view">
+                    <a href="login.html" class="nav-button">Login</a>
+                    <a href="register.html" class="nav-button register">Register</a>
+                </div>
+
+                <div id="logged-in-view" style="display: none;">
+                    <span id="user-email-display"></span>
+                    <button id="logout-button" class="nav-button">Logout</button>
+                </div>
+            </nav>
             <p>Tell me what the story should be about, and I will create it for you!</p>
         </header>
 
@@ -37,12 +49,11 @@
         </main>
 
         <section id="story-output" class="hidden">
-            <div id="image-container">
-                </div>
-            <div id="story-container">
-                </div>
+            <div id="image-container"></div>
+            <div id="story-container"></div>
         </section>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
