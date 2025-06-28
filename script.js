@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // 3. Trimitem datele către serverul nostru local
-            const serverUrl = 'http://localhost:3001/create-story';
+            const serverUrl = 'https://magic-storyteller.onrender.com/create-story';
             const response = await fetch(serverUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
