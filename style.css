@@ -254,3 +254,25 @@ nav {
     background-color: #c0392b;
     color: white;
 }
+/* --- Save Story Button Styles --- */
+#save-story-button {
+    margin: 10px auto 30px auto; /* Spațiere sus/jos și centrat automat stânga/dreapta */
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: #e74c3c; /* O nuanță de roșu/roz pentru "inimă" */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: none; /* Butonul este ascuns inițial */
+}
+
+#save-story-button.visible {
+    display: block; /* Clasa pe care o vom adăuga cu JavaScript pentru a-l face vizibil */
+}
+
+#save-story-button:hover {
+    background-color: #c0392b;
+}
