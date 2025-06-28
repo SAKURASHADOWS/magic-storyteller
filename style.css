@@ -1,0 +1,142 @@
+/* --- Magic Storyteller Stylesheet v1.0 --- */
+
+:root {
+    --bg-color: #FDF8E8; /* Un crem foarte deschis, cald */
+    --text-color: #5D5C61; /* Un gri închis, moale */
+    --accent-color: #AEC6CF; /* Un albastru-gri pastelat */
+    --accent-dark-color: #92b0b9;
+    --card-bg-color: #FFFFFF;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aliniem la început, nu la centru */
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.story-form {
+    background: var(--card-bg-color);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+#create-story-button {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#create-story-button:hover {
+    background-color: var(--accent-dark-color);
+}
+
+#story-output {
+    background: var(--card-bg-color);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    margin-top: 40px;
+}
+
+#story-output.hidden {
+    display: none;
+}
+
+#story-output img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+#story-output p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: left;
+    white-space: pre-wrap; /* Păstrează formatarea textului poveștii */
+}
+
+#story-output .error {
+    color: #c0392b;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* --- Loading Spinner Style --- */
+.loader {
+    border: 8px solid #f3f3f3; /* Gri deschis */
+    border-top: 8px solid var(--accent-color); /* Albastrul nostru pastelat */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
