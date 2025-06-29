@@ -1,18 +1,22 @@
-// --- Magic Storyteller Auth Logic v1.2 --- FINAL CORRECTED ---
+// --- Magic Storyteller Auth Logic v2.0 --- FINAL ---
 
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');
     const loginForm = document.getElementById('login-form');
     const messageContainer = document.getElementById('message-container');
 
-    const baseServerUrl ='https://magic-storyteller.onrender.com'; 
+    // --- CONFIGURARE SERVER ---
+    // Folosim adresa locală pentru testare. O vom schimba la lansare.
+    const baseServerUrl = 'http://localhost:3002'; 
+    // const baseServerUrl = 'https://magic-storyteller.onrender.com'; // Adresa pentru site-ul public
+    // --------------------------
 
     // --- LOGIC FOR THE REGISTRATION FORM ---
     if (registerForm) {
         registerForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             messageContainer.textContent = '';
-            messageContainer.className = 'message';
+            messageContainer.className = '';
             const email = document.getElementById('email-input').value;
             const password = document.getElementById('password-input').value;
 
@@ -22,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Adresa corectă, completă
-            const registerUrl = `${baseServerUrl}/register`;
+            const registerUrl = `${baseServerUrl}/register`; // Construim adresa completă
 
             try {
                 const response = await fetch(registerUrl, {
@@ -49,12 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             messageContainer.textContent = '';
-            messageContainer.className = 'message';
+            messageContainer.className = '';
             const email = document.getElementById('email-input').value;
             const password = document.getElementById('password-input').value;
-
-            // Adresa corectă, completă
-            const loginUrl = `${baseServerUrl}/login`;
+            
+            const loginUrl = `${baseServerUrl}/login`; // Construim adresa completă
 
             try {
                 const response = await fetch(loginUrl, {
