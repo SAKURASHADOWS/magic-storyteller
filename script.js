@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         storyContainer.innerHTML = '';
 
         try {
-            const serverUrl = 'http://localhost:3001/create-story';
+            const serverUrl = 'https://magic-storyteller.onrender.com/create-story';
             const response = await fetch(serverUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
