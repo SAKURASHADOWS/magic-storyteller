@@ -1,91 +1,73 @@
-// --- Magic Storyteller Main Script v3.0 --- Final Auth Integration ---
+// --- script.js v3.1 --- DEBUGGING VERSION ---
 
-// Această funcție principală rulează doar dacă utilizatorul este logat.
+console.log('Script loaded. Waiting for DOM to be ready.');
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM ready. Starting main logic.');
+
+    // --- "The Bodyguard" Logic ---
+    const sessionDataString = localStorage.getItem('storyteller_session');
+    console.log('Found this in localStorage:', sessionDataString);
+
+    if (!sessionDataString) {
+        console.log('No session found. Redirecting to login.html...');
+        window.location.href = 'login.html';
+        return; 
+    }
+
+    try {
+        const sessionData = JSON.parse(sessionDataString);
+        console.log('Session data parsed successfully:', sessionData);
+
+        if (sessionData && sessionData.user) {
+            console.log('User found in session. Initializing app for:', sessionData.user.email);
+            initializeApp(sessionData);
+        } else {
+            console.error('ERROR: Session data is invalid or missing user info. Cleaning up and redirecting.');
+            localStorage.removeItem('storyteller_session');
+            window.location.href = 'login.html';
+        }
+    } catch (error) {
+        console.error('FATAL ERROR: Could not parse session data from localStorage. It is not valid JSON.', error);
+        localStorage.removeItem('storyteller_session');
+        window.location.href = 'login.html';
+    }
+});
+
+
 function initializeApp(session) {
-    console.log('App initialized for user:', session.user.email);
+    console.log('initializeApp function has started.');
 
-    // --- Meniu de navigare ---
+    // --- UI Update Logic ---
     const loggedOutView = document.getElementById('logged-out-view');
     const loggedInView = document.getElementById('logged-in-view');
     const userEmailDisplay = document.getElementById('user-email-display');
     const logoutButton = document.getElementById('logout-button');
 
     if (loggedInView && loggedOutView && userEmailDisplay && logoutButton) {
+        console.log('Updating navigation menu...');
         loggedOutView.style.display = 'none';
         loggedInView.style.display = 'flex';
         userEmailDisplay.textContent = session.user.email;
+
         logoutButton.addEventListener('click', () => {
+            console.log('Logout button clicked.');
             localStorage.removeItem('storyteller_session');
             window.location.href = 'login.html';
         });
-    }
-
-    // --- Logica aplicației ---
-    const createButton = document.getElementById('create-story-button');
-    const heroInput = document.getElementById('hero-input');
-    // ... și restul elementelor ...
-    const storyOutputSection = document.getElementById('story-output');
-    const imageContainer = document.getElementById('image-container');
-    const storyContainer = document.getElementById('story-container');
-
-    createButton.addEventListener('click', async () => {
-        // ... (restul logicii de creare a poveștii rămâne la fel) ...
-        const hero = heroInput.value;
-        const place = placeInput.value;
-        const object = objectInput.value;
-
-        if (!hero || !place || !object) {
-            alert('Please fill in all three fields!');
-            return;
-        }
-
-        createButton.disabled = true;
-        createButton.textContent = 'Creating magic...';
-        storyOutputSection.classList.remove('hidden');
-        imageContainer.innerHTML = '<div class="loader"></div>';
-        storyContainer.innerHTML = '';
-
-        try {
-            const serverUrl = 'https://magic-storyteller.onrender.com/create-story';
-            
-            const response = await fetch(serverUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ hero, place, object })
-            });
-            if (!response.ok) { throw new Error('Something went wrong!'); }
-            
-            const data = await response.json();
-
-            const imageElement = document.createElement('img');
-            imageElement.src = data.imageUrl;
-            imageContainer.innerHTML = ''; 
-            imageContainer.appendChild(imageElement);
-
-            const storyElement = document.createElement('p');
-            storyElement.textContent = data.story;
-            storyContainer.appendChild(storyElement);
-
-        } catch (error) {
-            console.error('Error:', error);
-            storyContainer.innerHTML = `<p class="error">Oops! Please try again.</p>`;
-        } finally {
-            createButton.disabled = false;
-            createButton.textContent = 'Create the Story!';
-        }
-    });
-}
-
-
-// --- "Gardianul" de la intrare ---
-// Acesta este codul care rulează primul.
-document.addEventListener('DOMContentLoaded', () => {
-    const sessionData = JSON.parse(localStorage.getItem('storyteller_session'));
-    if (!sessionData) {
-        // Dacă nu ești logat, te trimite la login
-        window.location.href = 'login.html';
     } else {
-        // Dacă ești logat, pornește aplicația principală
-        initializeApp(sessionData);
+        console.error('Could not find all navigation elements to update.');
     }
-});
+
+    // --- Main App Logic ---
+    const createButton = document.getElementById('create-story-button');
+    if (createButton) {
+        console.log('Create Story button found. Adding event listener.');
+        createButton.addEventListener('click', async () => {
+            // ... (restul logicii de creare a poveștii) ...
+            console.log('Create Story button clicked!');
+        });
+    } else {
+        console.error('FATAL: Create Story button not found!');
+    }
+}
