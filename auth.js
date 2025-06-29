@@ -1,9 +1,13 @@
-// --- Magic Storyteller Auth Logic v1.1 ---
+// --- Magic Storyteller Auth Logic v1.2 --- FINAL CORRECTED ---
 
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');
     const loginForm = document.getElementById('login-form');
     const messageContainer = document.getElementById('message-container');
+
+    const baseServerUrl = 'http://localhost:3002'; // PENTRU TESTARE LOCALĂ
+    // CÂND FACEM DEPLOY, VOM ÎNLOCUI LINIA DE MAI SUS CU:
+    // const baseServerUrl = 'https://magic-storyteller.onrender.com'; 
 
     // --- LOGIC FOR THE REGISTRATION FORM ---
     if (registerForm) {
@@ -20,10 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const serverUrl = 'https://magic-storyteller.onrender.com';
+            // Adresa corectă, completă
+            const registerUrl = `${baseServerUrl}/register`;
 
             try {
-                const response = await fetch(serverUrl, {
+                const response = await fetch(registerUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -50,10 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('email-input').value;
             const password = document.getElementById('password-input').value;
 
-            const serverUrl = 'http://localhost:3002/login';
+            // Adresa corectă, completă
+            const loginUrl = `${baseServerUrl}/login`;
 
             try {
-                const response = await fetch(serverUrl, {
+                const response = await fetch(loginUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -61,16 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 if (!response.ok) { throw new Error(data.error); }
                 
-                // --- MODIFICAREA CHEIE ESTE AICI ---
-                // Salvăm sesiunea sub un nume unic pentru acest proiect
                 localStorage.setItem('storyteller_session', JSON.stringify(data));
-                // --- =============================== ---
 
                 messageContainer.textContent = 'Login successful! Redirecting...';
                 messageContainer.className = 'message success';
                 
                 setTimeout(() => {
-                    window.location.href = 'index.html'; // Redirect to the main app
+                    window.location.href = 'index.html';
                 }, 2000);
             } catch (error) {
                 messageContainer.textContent = `Error: ${error.message}`;
