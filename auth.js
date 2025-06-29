@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CONFIGURARE SERVER ---
     // Folosim adresa locală pentru testare. O vom schimba la lansare.
-    const baseServerUrl = 'http://localhost:3002'; 
+    const baseServerUrl = 'https://magic-storyteller.onrender.com'; 
     // const baseServerUrl = 'https://magic-storyteller.onrender.com'; // Adresa pentru site-ul public
     // --------------------------
 
