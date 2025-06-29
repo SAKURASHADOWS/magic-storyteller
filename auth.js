@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const messageContainer = document.getElementById('message-container');
 
-    const baseServerUrl = 'http://localhost:3002'; // PENTRU TESTARE LOCALĂ
-    // CÂND FACEM DEPLOY, VOM ÎNLOCUI LINIA DE MAI SUS CU:
-    // const baseServerUrl = 'https://magic-storyteller.onrender.com'; 
+    const baseServerUrl ='https://magic-storyteller.onrender.com'; 
 
     // --- LOGIC FOR THE REGISTRATION FORM ---
     if (registerForm) {
