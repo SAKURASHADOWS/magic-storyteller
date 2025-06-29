@@ -1,9 +1,9 @@
-/* --- Magic Storyteller Stylesheet v1.0 --- */
+/* --- Magic Storyteller Stylesheet FINAL --- */
 
 :root {
-    --bg-color: #FDF8E8; /* Un crem foarte deschis, cald */
-    --text-color: #5D5C61; /* Un gri închis, moale */
-    --accent-color: #AEC6CF; /* Un albastru-gri pastelat */
+    --bg-color: #FDF8E8;
+    --text-color: #5D5C61;
+    --accent-color: #AEC6CF;
     --accent-dark-color: #92b0b9;
     --card-bg-color: #FFFFFF;
     --border-color: #E0E0E0;
@@ -16,7 +16,7 @@ body {
     color: var(--text-color);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Aliniem la început, nu la centru */
+    align-items: flex-start;
     min-height: 100vh;
     padding: 40px 20px;
     box-sizing: border-box;
@@ -26,6 +26,12 @@ body {
     width: 100%;
     max-width: 600px;
     text-align: center;
+}
+
+header {
+    position: relative;
+    padding: 20px;
+    padding-top: 60px; /* Spațiu pentru meniul de navigare */
 }
 
 header h1 {
@@ -41,6 +47,62 @@ header p {
     margin-bottom: 40px;
 }
 
+/* --- Navigation Menu Styles --- */
+nav {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-button {
+    padding: 8px 16px;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    background-color: transparent;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+}
+
+.nav-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.nav-button.register {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.nav-button.register:hover {
+    background-color: var(--accent-dark-color);
+    border-color: var(--accent-dark-color);
+}
+
+#user-email-display {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+#logout-button {
+    background-color: transparent;
+    color: #e74c3c; /* Roșu pentru logout */
+    border-color: #e74c3c;
+}
+
+#logout-button:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
+/* --- Rest of the styles --- */
 .story-form {
     background: var(--card-bg-color);
     padding: 40px;
@@ -57,7 +119,6 @@ header p {
     display: block;
     margin-bottom: 8px;
     font-weight: 700;
-    font-size: 1.1rem;
 }
 
 .input-group input {
@@ -66,9 +127,6 @@ header p {
     border: 2px solid var(--border-color);
     border-radius: 10px;
     font-size: 1rem;
-    font-family: 'Nunito', sans-serif;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
 }
 
 .input-group input:focus {
@@ -86,7 +144,6 @@ header p {
     font-size: 1.2rem;
     font-weight: 800;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 #create-story-button:hover {
@@ -116,7 +173,7 @@ header p {
     font-size: 1.2rem;
     line-height: 1.8;
     text-align: left;
-    white-space: pre-wrap; /* Păstrează formatarea textului poveștii */
+    white-space: pre-wrap;
 }
 
 #story-output .error {
@@ -125,10 +182,9 @@ header p {
     text-align: center;
 }
 
-/* --- Loading Spinner Style --- */
 .loader {
-    border: 8px solid #f3f3f3; /* Gri deschis */
-    border-top: 8px solid var(--accent-color); /* Albastrul nostru pastelat */
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid var(--accent-color);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -139,140 +195,4 @@ header p {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-/* --- Auth Form Styles --- */
-.form-container {
-    background: var(--card-bg-color);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    max-width: 500px;
-    margin: 40px auto;
-}
-
-.form-group {
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1rem;
-    font-family: 'Nunito', sans-serif;
-}
-
-.message {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    font-weight: 700;
-}
-.message.success {
-    background-color: #e0f2e9;
-    color: #34a853;
-}
-.message.error {
-    background-color: #fce8e6;
-    color: #ea4335;
-}
-.form-link {
-    text-align: center;
-    margin-top: 20px;
-}
-.form-link a {
-    color: var(--accent-color);
-    font-weight: bold;
-    text-decoration: none;
-}
-/* --- Navigation Menu Styles (New) --- */
-
-header {
-    position: relative; /* Necesar pentru a poziționa meniul */
-    padding: 20px;
-}
-
-nav {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Spațiu între elemente */
-}
-
-.nav-button {
-    padding: 8px 16px;
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color);
-    background-color: transparent;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.9rem;
-}
-
-.nav-button:hover {
-    background-color: var(--accent-color);
-    color: white;
-}
-
-/* Stil special pentru butonul de Register, pentru a ieși în evidență */
-.nav-button.register {
-    background-color: var(--accent-color);
-    color: white;
-}
-
-.nav-button.register:hover {
-    background-color: var(--accent-dark-color);
-    border-color: var(--accent-dark-color);
-}
-
-#user-email-display {
-    font-weight: 700;
-    color: var(--text-color);
-}
-
-#logout-button {
-    background-color: transparent;
-    color: #c0392b; /* O nuanță de roșu pentru logout */
-    border-color: #c0392b;
-}
-
-#logout-button:hover {
-    background-color: #c0392b;
-    color: white;
-}
-/* --- Save Story Button Styles --- */
-#save-story-button {
-    margin: 10px auto 30px auto; /* Spațiere sus/jos și centrat automat stânga/dreapta */
-    padding: 12px 25px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    background-color: #e74c3c; /* O nuanță de roșu/roz pentru "inimă" */
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    display: none; /* Butonul este ascuns inițial */
-}
-
-#save-story-button.visible {
-    display: block; /* Clasa pe care o vom adăuga cu JavaScript pentru a-l face vizibil */
-}
-
-#save-story-button:hover {
-    background-color: #c0392b;
 }
